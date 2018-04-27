@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;net452;uap10.0;Xamarin.iOS10;Xamarin.Mac20;MonoAndroid70</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;net452;<!--uap10.0;-->Xamarin.iOS10;Xamarin.Mac20;MonoAndroid70;netcoreapp2.0</TargetFrameworks>
     <AssemblyName>Akavache</AssemblyName>
     <RootNamespace>Akavache</RootNamespace>
     <Description>An asynchronous, persistent key-value store for desktop and mobile applications on .NET</Description>
@@ -10,7 +10,7 @@
   <ItemGroup>
     <Compile Remove="Platforms\**\*.cs" />
     <None Include="Platforms\**\*.cs" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
     <PackageReference Include="Splat" Version="2.0.0" />
     <PackageReference Include="System.Reactive" Version="[3.1.1,4)" />
   </ItemGroup>
@@ -38,10 +38,10 @@
     <Compile Include="Platforms\wpf\**\*.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
+  <!--<ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
     <Compile Include="Platforms\windows-common\**\*.cs" />
     <Compile Include="Platforms\uap10.0\**\*.cs" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
     <Compile Include="Platforms\apple-common\**\*.cs" />
@@ -61,6 +61,11 @@
     <Compile Include="Platforms\android\**\*.cs" />
     <Compile Include="Platforms\xamarin-common\**\*.cs" />
     <Compile Include="Platforms\xamarin-mobile\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSBuild.Sdk.Extras" Version="1.3.1" />
+    <PackageReference Update="SourceLink.Create.CommandLine" Version="2.8.1" />
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
